@@ -21,7 +21,7 @@ This card displays provided data as an HTML content of a card.
 
 ## Example usage
 
-![Example](https://github.com/PiotrMachowski/Home-Assistant-Lovelace-Xiaomi-Vacuum-Map-card/raw/master/example.jpg)
+![Example](https://github.com/PiotrMachowski/Home-Assistant-Lovelace-HTML-card/raw/master/example.jpg)
 
 
 ```yaml
@@ -41,7 +41,7 @@ views:
 ```
 
 ## Installation
-1. Download [*html-card.js*](https://github.com/PiotrMachowski/Home-Assistant-Lovelace-Xiaomi-Vacuum-Map-card/raw/master/xiaomi-vacuum-map-card.js) to `/www/custom_lovelace/html_card` directory:
+1. Download [*html-card.js*](https://github.com/PiotrMachowski/Home-Assistant-Lovelace-HTML-card/raw/master/xiaomi-vacuum-map-card.js) to `/www/custom_lovelace/html_card` directory:
     ```bash
     mkdir -p www/custom_lovelace/html_card
     cd www/custom_lovelace/html_card/
