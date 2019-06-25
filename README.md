@@ -20,6 +20,10 @@ This card displays provided data as an HTML content of a card.
 **WARNING:** `html` and `entity_id` cannot be present in single list entry
 
 ## Example usage
+
+![Example](https://github.com/PiotrMachowski/Home-Assistant-Lovelace-Xiaomi-Vacuum-Map-card/raw/master/example.jpg)
+
+
 ```yaml
 views:
 - name: Example
@@ -27,11 +31,13 @@ views:
     - type: custom:html-card
       title: 'HTML card'
       data:
-        - html: 'This is first <b>HTML</b> text'
-        - entity_id: sensor.html_sensor
-        - html: 'This is second <u>HTML</u> text'
-        - entity_id: binary_sensor.ordinary_sensor
-          attribute: html_attribute
+        - html: 'Sun state: <b>'
+        - entity_id: sun.sun
+        - html: '</b>, elevation: '
+        - entity_id: sun.sun
+          attribute: elevation
+        - html: '</br><b>Hello</b> there!<p>General <u>Kenobi!</u>'
+        - html: '<img src="https://i.redd.it/ltxppihy4cyy.jpg" width="100%" />'
 ```
 
 ## Installation

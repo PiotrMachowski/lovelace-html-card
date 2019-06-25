@@ -68,7 +68,7 @@ class HtmlCard extends HTMLElement {
                     entry_html = this._hass.states[data_entry.entity_id].state;
                 }
             }
-            htmlValue = htmlValue + '\n' + entry_html;
+            htmlValue = htmlValue + entry_html;
         }
         if (this._config.title)
             header = `<div class="card-header" style="padding: 8px 0 16px 0;"><div class="name">
