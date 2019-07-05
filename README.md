@@ -7,18 +7,13 @@ This card displays provided data as an HTML content of a card.
 | Key | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
 | `title` | `string` | `False` | - | Title of a card |
-| `data` | `List` | `True` | - | List of HTML data |
+| `content` | `string` | `True` | - | Content of a card |
 
-### Data options
+### Templates
 
-| Key | Type | Required | Default | Description |
-| --- | --- | --- | --- | --- |
-| `html` | `string` | `False` | - | HTML text |
-| `entity_id` | `string` | `False` | - | ID of entity which state should be presented as HTML |
-| `attribute` | `string` | `False` | - | If specified with `entity_id` value of attribute will be used instead of state |
-
-**WARNING:** `html` and `entity_id` cannot be present in single list entry
-
+ * Entity state, example: `[[ sun.sun ]]`, `[[ sun.sun.state ]]`
+ * Entity attribute, example: `[[ sun.sun.attrubutes.elevation ]]`
+ 
 ## Example usage
 
 ![Example](https://github.com/PiotrMachowski/Home-Assistant-Lovelace-HTML-card/raw/master/example.jpg)
@@ -30,14 +25,10 @@ views:
   cards:
     - type: custom:html-card
       title: 'HTML card'
-      data:
-        - html: 'Sun state: <b>'
-        - entity_id: sun.sun
-        - html: '</b>, elevation: '
-        - entity_id: sun.sun
-          attribute: elevation
-        - html: '</br><b>Hello</b> there!<p>General <u>Kenobi!</u>'
-        - html: '<img src="https://i.redd.it/ltxppihy4cyy.jpg" width="100%" />'
+      content: |
+        Sun state: <b>[[sun.sun]]</b>, elevation: [[sun.sun.attributes.elevation]]</br>
+        <b>Hello</b> there!<p>General <u>Kenobi!</u></p>
+        <img src="https://i.redd.it/ltxppihy4cyy.jpg" width="100%"/>
 ```
 
 ## Installation
@@ -53,3 +44,6 @@ views:
       - url: /local/custom_lovelace/html_card/html-card.js
         type: js
     ```
+
+## Hints
+* To use mdi icon follow example: `<ha-icon icon="mdi:weather-sunny"></ha-icon>`

@@ -1,24 +1,11 @@
-function hasConfigOrEntityChanged(element, changedProps) {
-    if (changedProps.has("_config")) {
-        return true;
-    }
-    const oldHass = changedProps.get("_hass");
-    if (oldHass) {
-        let changed = false;
-        for (const data_entry of element._config.data) {
-            changed = changed || data_entry.entity_id && oldHass.states[data_entry.entity_id] !== element._hass.states[data_entry.entity_id];
-        }
-        return changed;
-    }
-    return true;
-}
+const TEMPLATE_REGEX = /\[\[.*?\]\]/gm;
 
 class HtmlCard extends HTMLElement {
 
     static get properties() {
         return {
             _config: {},
-            _hass: {}
+            _hass: {},
         };
     }
 
@@ -32,20 +19,8 @@ class HtmlCard extends HTMLElement {
     }
 
     setConfig(config) {
-        if (!config.data) {
-            throw new Error("You need to define a 'data:' in your configuration")
-        }
-        if (config.data.length === 0) {
-            throw new Error("You need to define at least one data in your configuration")
-        }
-        for (const data_entry of config.data) {
-            if (!data_entry.entity_id && !data_entry.html) {
-                throw new Error("You need to define an 'entity_id:' or 'html' in every data entry")
-            }
-            if (data_entry.entity_id && data_entry.html) {
-                throw new Error("You can define only one of 'entity_id:'/'html' in every data entry")
-
-            }
+        if (!config.content) {
+            throw new Error("You need to define 'content' in your configuration.")
         }
         this._config = config;
     }
@@ -55,29 +30,34 @@ class HtmlCard extends HTMLElement {
             return ``;
         }
         let header = ``;
-        let htmlValue = ``;
-        for (const data_entry of this._config.data) {
-            let entry_html;
-            if (data_entry.html) {
-                entry_html = data_entry.html;
-            } else {
-                if (data_entry.attribute) {
-                    entry_html = this._hass.states[data_entry.entity_id].attributes[data_entry.attribute]
-                }
-                else {
-                    entry_html = this._hass.states[data_entry.entity_id].state;
-                }
+        let content = this._config.content;
+        let outputContent = content.replace(/\r?\n|\r/g, "</br>");
+        let m;
+        while ((m = TEMPLATE_REGEX.exec(content)) !== null) {
+            if (m.index === TEMPLATE_REGEX.lastIndex) {
+                TEMPLATE_REGEX.lastIndex++;
             }
-            htmlValue = htmlValue + entry_html;
+            m.forEach(match => {
+                let e = match.replace("[[", "").replace("]]", "").replace(/\s/gm, "");
+                let split = e.split(".");
+                let dots = split.length - 1;
+                let output;
+                if (dots === 1 || dots === 2 && split[2] === "state") {
+                    let id = split[0] + "." + split[1];
+                    output = this._hass.states[id].state;
+                } else if (dots === 3 && split[2] === "attributes") {
+                    let id = split[0] + "." + split[1];
+                    let attribute = split[3];
+                    output = this._hass.states[id].attributes[attribute];
+                } else {
+                    output = match;
+                }
+                outputContent = outputContent.replace(match, output);
+            });
         }
         if (this._config.title)
-            header = `<div class="card-header" style="padding: 8px 0 16px 0;"><div class="name">
-                      ${this._config.title}
-                      </div></div>`;
-        this.innerHTML = `<ha-card id="htmlCard" style="padding: 16px">
-                ${header}
-                <div>${htmlValue} </div>
-                </ha-card>`;
+            header = `<div class="card-header" style="padding: 8px 0 16px 0;"><div class="name">${this._config.title}</div></div>`;
+        this.innerHTML = `<ha-card id="htmlCard" style="padding: 16px">${header}<div>${outputContent}</div></ha-card>`;
     }
 
     getCardSize() {
