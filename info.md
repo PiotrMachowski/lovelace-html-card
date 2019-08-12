@@ -33,20 +33,6 @@ views:
         <center><img src="https://vignette.wikia.nocookie.net/starwars/images/f/fa/Modal_Nodes_02.jpg" width="[[input_number.system_volume]]%"/></center>
 ```
 
-## Installation
-1. Download [*html-card.js*](https://github.com/PiotrMachowski/lovelace-html-card/raw/master/xiaomi-vacuum-map-card.js) to `/www/custom_lovelace/html_card` directory:
-    ```bash
-    mkdir -p www/custom_lovelace/html_card
-    cd www/custom_lovelace/html_card/
-    wget https://github.com/PiotrMachowski/lovelace-html-card/raw/master/html-card.js
-    ```
-2. Add card to resources in `ui-lovelace.yaml` or in raw editor if you are using frontend UI editor:
-    ```yaml
-    resources:
-      - url: /local/custom_lovelace/html_card/html-card.js
-        type: js
-    ```
-
 ## Hints
 * To use mdi icon follow example: `<ha-icon icon="mdi:weather-sunny"></ha-icon>`
 * The only improvement over [*markdown-mod*](https://github.com/thomasloven/lovelace-markdown-mod) that *html-card* provides is ability to use css styles.
