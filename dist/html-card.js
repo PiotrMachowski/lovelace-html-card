@@ -10,19 +10,45 @@ class HtmlCard extends HTMLElement {
     }
 
     set hass(hass) {
+        const oldHass = this._hass;
         this._hass = hass;
-        this.render();
+        if (this.shouldUpdate(oldHass)) {
+            this.render();
+        }
     }
 
-    shouldUpdate(changedProps) {
-        return hasConfigOrEntityChanged(this, changedProps);
+    shouldUpdate(oldHass) {
+        if (oldHass) {
+            let should = false;
+            this._entities.forEach(entity => {
+                should = should || oldHass.states[entity] !== this._hass.states[entity]
+                    || oldHass.states[entity].attributes !== this._hass.states[entity].attributes
+            });
+            return should;
+        }
+        return true;
     }
 
     setConfig(config) {
         if (!config.content) {
             throw new Error("You need to define 'content' in your configuration.")
         }
+        let entities = [];
+        let m;
+        while ((m = TEMPLATE_REGEX.exec(config.content)) !== null) {
+            if (m.index === TEMPLATE_REGEX.lastIndex) {
+                TEMPLATE_REGEX.lastIndex++;
+            }
+            m.forEach(match => {
+                let e = match.replace("[[", "").replace("]]", "").replace(/\s/gm, "");
+                let split = e.split(".");
+                let entity_id = split[0] + "." + split[1];
+                entities.push(entity_id);
+            });
+        }
+        this._entities = entities;
         this._config = config;
+        this.render();
     }
 
     render() {
@@ -31,7 +57,7 @@ class HtmlCard extends HTMLElement {
         }
         let header = ``;
         let content = this._config.content;
-        let outputContent = content.replace(/\r?\n|\r/g, "</br>");
+        let outputContent = content.replace(/\r?\n|\r/g, "");
         let m;
         while ((m = TEMPLATE_REGEX.exec(content)) !== null) {
             if (m.index === TEMPLATE_REGEX.lastIndex) {
