@@ -34,11 +34,11 @@ views:
 ```
 
 ## Installation
-1. Download [*html-card.js*](https://github.com/PiotrMachowski/lovelace-html-card/raw/master/xiaomi-vacuum-map-card.js) to `/www/custom_lovelace/html_card` directory:
+1. Download [*html-card.js*](https://github.com/PiotrMachowski/lovelace-html-card/raw/master/dist/html-card.js) to `/www/custom_lovelace/html_card` directory:
     ```bash
     mkdir -p www/custom_lovelace/html_card
     cd www/custom_lovelace/html_card/
-    wget https://github.com/PiotrMachowski/lovelace-html-card/raw/master/html-card.js
+    wget https://github.com/PiotrMachowski/lovelace-html-card/raw/master/dist/html-card.js
     ```
 2. Add card to resources in `ui-lovelace.yaml` or in raw editor if you are using frontend UI editor:
     ```yaml
@@ -49,4 +49,6 @@ views:
 
 ## Hints
 * To use mdi icon follow example: `<ha-icon icon="mdi:weather-sunny"></ha-icon>`
+* If you need more powerful templates check out [*HTML Template card*](https://github.com/PiotrMachowski/Home-Assistant-Lovelace-HTML-Template-card)
 * The only improvement over [*markdown-mod*](https://github.com/thomasloven/lovelace-markdown-mod) that *html-card* provides is ability to use css styles.
+* This card is available in [*HACS*](https://github.com/custom-components/hacs/)

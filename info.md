@@ -1,5 +1,3 @@
-# Lovelace HTML card
-
 This card displays provided data as an HTML content of a card.
 
 ## Configuration options
@@ -35,4 +33,5 @@ views:
 
 ## Hints
 * To use mdi icon follow example: `<ha-icon icon="mdi:weather-sunny"></ha-icon>`
+* If you need more powerful templates check out [*HTML Template card*](https://github.com/PiotrMachowski/Home-Assistant-Lovelace-HTML-Template-card)
 * The only improvement over [*markdown-mod*](https://github.com/thomasloven/lovelace-markdown-mod) that *html-card* provides is ability to use css styles.
