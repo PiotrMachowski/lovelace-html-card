@@ -1,5 +1,7 @@
 # Lovelace HTML card
 
+[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
+
 This card displays provided data as an HTML content of a card.
 
 ## Configuration options
