@@ -22,7 +22,7 @@ class HtmlCard extends HTMLElement {
             let should = false;
             this._entities.forEach(entity => {
                 should = should || oldHass.states[entity] !== this._hass.states[entity]
-                    || oldHass.states[entity].attributes !== this._hass.states[entity].attributes
+                    || oldHass.states[entity]?.attributes !== this._hass.states[entity]?.attributes
             });
             return should;
         }
@@ -70,11 +70,11 @@ class HtmlCard extends HTMLElement {
                 let output;
                 if (dots === 1 || dots === 2 && split[2] === "state") {
                     let id = split[0] + "." + split[1];
-                    output = this._hass.states[id].state;
+                    output = this._hass.states[id]?.state;
                 } else if (dots === 3 && split[2] === "attributes") {
                     let id = split[0] + "." + split[1];
                     let attribute = split[3];
-                    output = this._hass.states[id].attributes[attribute];
+                    output = this._hass.states[id]?.attributes[attribute];
                 } else {
                     output = match;
                 }
