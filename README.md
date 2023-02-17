@@ -38,11 +38,11 @@ views:
 ```
 
 ## Installation
-1. Download [*html-card.js*](https://github.com/PiotrMachowski/lovelace-html-card/raw/master/dist/html-card.js) to `/www/community/html-card` directory:
+1. Download [*html-card.js*](https://github.com/Jpsy/lovelace-html-card/raw/master/dist/html-card.js) to `/www/community/html-card` directory:
     ```bash
     mkdir -p www/community/html-card
     cd www/community/html-card/
-    wget https://github.com/PiotrMachowski/lovelace-html-card/raw/master/dist/html-card.js
+    wget https://github.com/Jpsy/lovelace-html-card/raw/master/dist/html-card.js
     ```
 2. Add card to Lovelace resources in:  
    Configuration -> Dashboards -> Resources -> +Add Resource  
