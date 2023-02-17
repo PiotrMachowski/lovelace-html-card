@@ -1,4 +1,5 @@
 # Lovelace HTML card
+This is a fork of the Lovelace HTML card of Piotr Machowski. It includes some fixes that are pending PRs in Piotr's repository for some time now. All credit goes to Piotr. All coffee and paypal links here are those of Piotr. The install instructions have been adapted to pull the version of this fork.
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
 [![buymeacoffee_badge](https://img.shields.io/badge/Donate-Buy%20Me%20a%20Coffee-ff813f?style=flat)](https://www.buymeacoffee.com/PiotrMachowski)
