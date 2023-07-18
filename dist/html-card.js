@@ -56,6 +56,8 @@ class HtmlCard extends HTMLElement {
             return ``;
         }
         let header = ``;
+        let height = this._config.height;
+        let width = this._config.width;
         let content = this._config.content;
         let outputContent = content.replace(/\r?\n|\r/g, "");
         let m;
@@ -83,7 +85,7 @@ class HtmlCard extends HTMLElement {
         }
         if (this._config.title)
             header = `<div class="card-header" style="padding: 8px 0 16px 0;"><div class="name">${this._config.title}</div></div>`;
-        this.innerHTML = `<ha-card id="htmlCard" style="padding: 16px">${header}<div>${outputContent}</div></ha-card>`;
+        this.innerHTML = `<ha-card id="htmlCard" style="padding: 16px ; overflow: scroll; height: ${this._config.height}; width: ${this._config.width};">${header}<div>${outputContent}</div></ha-card>`;
     }
 
     getCardSize() {
