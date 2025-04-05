@@ -1,4 +1,5 @@
 # Lovelace HTML card
+This is a fork of the Lovelace HTML card of Piotr Machowski. It includes some fixes that are pending PRs in Piotr's repository for some time now. All credit goes to Piotr. All coffee and paypal links here are those of Piotr. The install instructions have been adapted to pull the version of this fork.
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)<!-- piotrmachowski_support_badges_start -->
 [![Ko-Fi][ko_fi_shield]][ko_fi]
@@ -41,18 +42,17 @@ views:
 ```
 
 ## Installation
-1. Download [*html-card.js*](https://github.com/PiotrMachowski/lovelace-html-card/raw/master/dist/html-card.js) to `/www/custom_lovelace/html_card` directory:
+1. Download [*html-card.js*](https://github.com/Jpsy/lovelace-html-card/raw/master/dist/html-card.js) to `/www/community/html-card` directory:
     ```bash
-    mkdir -p www/custom_lovelace/html_card
-    cd www/custom_lovelace/html_card/
-    wget https://github.com/PiotrMachowski/lovelace-html-card/raw/master/dist/html-card.js
+    mkdir -p www/community/html-card
+    cd www/community/html-card/
+    wget https://github.com/Jpsy/lovelace-html-card/raw/master/dist/html-card.js
     ```
-2. Add card to resources in `ui-lovelace.yaml` or in raw editor if you are using frontend UI editor:
-    ```yaml
-    resources:
-      - url: /local/custom_lovelace/html_card/html-card.js
-        type: js
-    ```
+2. Add card to Lovelace resources in:  
+   Configuration -> Dashboards -> Resources -> +Add Resource  
+   
+   URL: /local/community/html-card/html-card.js  
+   Resource type: JavaScript module
 
 ## Hints
 * To use mdi icon follow example: `<ha-icon icon="mdi:weather-sunny"></ha-icon>`
